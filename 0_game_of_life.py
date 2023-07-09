@@ -63,10 +63,10 @@ def show_instructions_dialog():
         # Display instructions
         text_title = font_large.render("Conway's Game of Life", True, BLACK)
         text_instructions1 = font_small.render("Instructions:", True, BLACK)
-        text_instructions2 = font_small.render("- Right-click to create live cells", True, BLACK)
-        text_instructions3 = font_small.render("- Left-click to create dead cells", True, BLACK)
-        text_instructions4 = font_small.render("- Press Enter to start the simulation", True, BLACK)
-        text_instructions5 = font_small.render("- Press Space to clear the grid and restart", True, BLACK)
+        text_instructions2 = font_small.render("- Left-click to create live cells", True, BLACK)
+        text_instructions3 = font_small.render("- Right-click to create dead cells", True, BLACK)
+        text_instructions4 = font_small.render("- Press Enter to start and space to clear and restart", True, BLACK)
+        text_instructions5 = font_small.render("- To start drawing initial conditions just click here", True, BLACK)
 
         # Calculate the positions of the text
         title_position = text_title.get_rect(center=(dialog_x + dialog_width // 2, dialog_y + 50))
