@@ -43,6 +43,9 @@ def show_instructions_dialog():
     dialog_x = (WINDOW_SIZE[0] - dialog_width) // 2
     dialog_y = (WINDOW_SIZE[1] - dialog_height) // 2
 
+
+
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -61,12 +64,12 @@ def show_instructions_dialog():
         font_small = pygame.font.Font(None, 24)
 
         # Display instructions
-        text_title = font_large.render("Conway's Game of Life", True, BLACK)
-        text_instructions1 = font_small.render("Instructions:", True, BLACK)
+        text_title = font_large.render("Game of Life - Click Here to Start", True, BLACK)
+        text_instructions1 = font_small.render("Press R to create a random initial pattern:", True, BLACK)
         text_instructions2 = font_small.render("- Left-click to create live cells", True, BLACK)
         text_instructions3 = font_small.render("- Right-click to create dead cells", True, BLACK)
-        text_instructions4 = font_small.render("- Press Enter to start and space to clear and restart", True, BLACK)
-        text_instructions5 = font_small.render("- To start drawing initial conditions just click here", True, BLACK)
+        text_instructions4 = font_small.render("- Press Enter to start the simulation", True, BLACK)
+        text_instructions5 = font_small.render("- Press Space to clear the grid and restart", True, BLACK)
 
         # Calculate the positions of the text
         title_position = text_title.get_rect(center=(dialog_x + dialog_width // 2, dialog_y + 50))
@@ -93,6 +96,13 @@ def hide_initial_screen():
 # Function to update the display
 def update_display():
     pygame.display.flip()
+
+def generate_random_pattern():
+    global grid
+    random_pattern = np.random.choice([0, 1], size=(ROWS, COLS), p=[0.9, 0.1])
+    grid = random_pattern.astype(int)
+
+
 
 # Game loop
 running = True
@@ -154,6 +164,11 @@ while running:
                 clear_grid()
 
                 update_display()
+            elif event.key == pygame.K_r:
+                # Generate a random pattern
+                if not initial_pattern:
+                    generate_random_pattern()
+                    update_display()
 
     if initial_pattern:
         # Create a copy of the grid to store the next generation
